@@ -38,4 +38,4 @@ if __name__ == '__main__':
     except json.JSONDecodeError:
         sys.exit('Blacklist passwords are not JSON')
     except FileNotFoundError:
-        sys.exit('Blacklist was not found. Check file: {0}'.format(PATH_TO_BLACKLIST))
+        sys.exit('Blacklist was not found. Check file')
