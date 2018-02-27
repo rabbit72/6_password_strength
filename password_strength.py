@@ -29,10 +29,7 @@ def get_password_strength(password):
 
 if __name__ == '__main__':
     try:
-        while True:
-            password = input('Enter password for evaluation: ')
-            if password:
-                break
+        password = input('Enter password for evaluation: ')
         password_strength = get_password_strength(password)
         print('Password strength: {0}/10 '.format(password_strength))
     except json.JSONDecodeError:
