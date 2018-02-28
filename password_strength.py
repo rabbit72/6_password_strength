@@ -15,15 +15,19 @@ def get_password_strength(password):
     black_list = load_blacklist(path_to_blacklist)
     if password in black_list or len(password) < 6:
         return mark_password
-    mark_password += 1 if len(password) >= 8 else 0
-    mark_password += 1 if len(password) >= 10 else 0
-    mark_password += 1 if len(password) >= 12 else 0
-    mark_password += 1 if len(password) >= 14 else 0
-    mark_password += 1 if len(password) >= 16 else 0
-    mark_password += 1 if re.search('[0-9]', password) else 0
-    mark_password += 1 if re.search('[a-z]', password) else 0
-    mark_password += 1 if re.search('[A-Z]', password) else 0
-    mark_password += 2 if re.search('[{0}]'.format(punctuation), password) else 0
+    check_list = [
+        len(password) > 7,
+        len(password) > 9,
+        len(password) > 11,
+        len(password) > 13,
+        len(password) > 15,
+        re.search('[0-9]', password),
+        re.search('[a-z]', password),
+        re.search('[A-Z]', password),
+        re.search('[{0}]'.format(punctuation), password)
+    ]
+    for test in check_list:
+        mark_password += 1 if test else 0
     return mark_password
 
 
