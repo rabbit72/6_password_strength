@@ -7,7 +7,7 @@ If your password contains:
 * numbers - 1 point
 * lower case - 1 point
 * upper case - 1 point
-* symbols - 2 point
+* symbols - 1 point
 * length more 7 - 1 point
 * length more 9 - 1 point
 * length more 11 - 1 point
@@ -32,10 +32,15 @@ Running on Windows is similar.
 # Example
 ```bash
 $ python3 password_strength.py
+Enter password for evaluation: qwerty1
+Password strength: 1/10 
+$ python3 password_strength.py
 Enter password for evaluation: hello_world!
-Password strength: 7/10
+Password strength: 6/10
+$ python3 password_strength.py 
+Enter password for evaluation: Hello_world!1234
+Password strength: 10/10 
 ```
-
 
 # Project Goals
 
