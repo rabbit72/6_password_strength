@@ -2,7 +2,7 @@
 
 This script need for evaluations password strength. *(Rating from 1 to 10)*
 
-#For which points
+# For which points
 If your password contains:
 * numbers - 1 point
 * lower case - 1 point
