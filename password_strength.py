@@ -6,7 +6,7 @@ from string import punctuation
 
 def load_blacklist(file_path):
     with open(file_path, 'r', encoding='utf-8') as file_blacklist:
-        return [bad_password for bad_password in file_blacklist]
+        return [bad_password.rstrip() for bad_password in file_blacklist]
 
 
 def get_password_strength(password, blacklist):
