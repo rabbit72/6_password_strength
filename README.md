@@ -32,14 +32,8 @@ Running on Windows is similar.
 # Example
 ```bash
 $ python3 password_strength.py
-Enter password for evaluation: qwerty1
-Password strength: 1/10 
-$ python3 password_strength.py
-Enter password for evaluation: hello_world!
-Password strength: 6/10
-$ python3 password_strength.py 
-Enter password for evaluation: Hello_world!1234
-Password strength: 10/10 
+Password: 
+Password strength: 6/10 
 ```
 
 # Project Goals
