@@ -1,20 +1,19 @@
 import re
 import sys
-import json
+from getpass import getpass
 from string import punctuation
 
 
 def load_blacklist(file_path):
     with open(file_path, 'r', encoding='utf-8') as file_blacklist:
-        return json.load(file_blacklist)
+        return [bad_password for bad_password in file_blacklist]
 
 
-def get_password_strength(password):
-    mark_password = 1
-    path_to_blacklist = 'blacklist_passwords'
-    black_list = load_blacklist(path_to_blacklist)
-    if password in black_list or len(password) < 6:
-        return mark_password
+def get_password_strength(password, blacklist):
+    min_password_score = 1
+    min_len_password = 6
+    if password in blacklist or len(password) < min_len_password:
+        return min_password_score
     check_list = [
         len(password) > 7,
         len(password) > 9,
@@ -26,17 +25,15 @@ def get_password_strength(password):
         re.search('[A-Z]', password),
         re.search('[{0}]'.format(punctuation), password)
     ]
-    for test in check_list:
-        mark_password += 1 if test else 0
-    return mark_password
+    return min_password_score + sum(map(bool, check_list))
 
 
 if __name__ == '__main__':
     try:
-        password = input('Enter password for evaluation: ')
-        password_strength = get_password_strength(password)
+        path_to_blacklist = 'blacklist_passwords'
+        blacklist = load_blacklist(path_to_blacklist)
+        password = getpass()
+        password_strength = get_password_strength(password, blacklist)
         print('Password strength: {0}/10 '.format(password_strength))
-    except json.JSONDecodeError:
-        sys.exit('Blacklist passwords are not JSON')
     except FileNotFoundError:
         sys.exit('Blacklist was not found. Check file')
